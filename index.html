@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="head">
+        <input type="text" placeholder="Enter Movies" id="title">
+        <button onclick="getMovies()">Search Movies</button>
+        <div id="container"></div>
+    </div>
+    
+</body>
+</html>
+<style>
+    body{
+        background-image: url('https://media.istockphoto.com/vectors/realistic-cinema-film-strip-in-perspective-modern-cinema-background-vector-id1289858635?k=20&m=1289858635&s=170667a&w=0&h=zThKBxatYXWapmvmpcly9DpkaJBB_VyKVveUyLFamv4=') ;
+    }
+
+    #head{
+        display: grid;
+    }
+    input{
+        width: 30%;
+        margin: auto;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    button{
+        width: 20%;
+        margin: auto;
+        padding: 10px;
+    }
+
+    #container{
+        margin: auto;
+    }
+    #p,#h{
+        color: white;
+        text-align: center;
+
+    }
+
+ 
+
+</style>
+
+<script>
+async function getMovies(){
+    // var key="9743f037"
+    var title=document.querySelector("#title").value
+    let url=`http://www.omdbapi.com/?t=${title}&apikey=9743f037`
+    
+    //  console.log(url);
+
+    let res = await fetch(url);
+   
+    let data = await res.json();
+
+     console.log(data)
+
+     append(data)
+
+}
+
+
+
+function append(data){
+
+    
+        let container=document.getElementById("container")
+    
+            var h1=document.createElement("h1")
+            h1.innerText=data.Title
+            h1.setAttribute("id", "h")
+
+            var p1=document.createElement("p")
+            p1.innerText="Realeased Date "+data.Released
+            p1.setAttribute("id", "p")
+
+
+
+            var avt=document.createElement("img")
+            avt.src=data.Poster
+            avt.setAttribute("id", "img")
+
+
+            container.append(h1,p1,avt)
+
+    }
+
+    
+
+</script>
+
