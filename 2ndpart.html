@@ -79,8 +79,18 @@ function append(data){
             h1.innerText=data.Title
             h1.setAttribute("id", "h")
 
+            var p1=document.createElement("p")
+            p1.innerText="Realeased Date "+data.Released
+            p1.setAttribute("id", "p")
 
-            container.append(h1)
+
+
+            var avt=document.createElement("img")
+            avt.src=data.Poster
+            avt.setAttribute("id", "img")
+
+
+            container.append(h1,p1,avt)
 
     }
 
